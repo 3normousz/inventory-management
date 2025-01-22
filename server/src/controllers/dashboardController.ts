@@ -14,7 +14,7 @@ export const getDashboardMatrices = async (
         stockQuantity: "desc",
       },
     });
-    const saleSummary = await prisma.salesSummary.findMany({
+    const salesSummary = await prisma.salesSummary.findMany({
       take: 5,
       orderBy: {
         date: "desc",
@@ -41,17 +41,19 @@ export const getDashboardMatrices = async (
         },
       }
     );
-    const expenseByCategory = expenseByCategorySummaryRaw.map((item) => ({
-      ...item,
-      amount: item.amount.toString(2),
-    }));
+    const expenseByCategorySummary = expenseByCategorySummaryRaw.map(
+      (item) => ({
+        ...item,
+        amount: item.amount.toString(),
+      })
+    );
 
     res.status(200).json({
       popularProducts,
-      saleSummary,
+      salesSummary,
       purchaseSummary,
       expenseSummary,
-      expenseByCategory,
+      expenseByCategorySummary,
     });
   } catch (error) {
     res.status(500).json({ message: "Error retrieving dashboard matrices" });
