@@ -4,7 +4,13 @@ import CardSalesSummary from "./cardSalesSummary";
 import CardPurchaseSummary from "./cardPurchaseSummary";
 import CardExpenseSummary from "./cardExpenseSummary";
 import StatCard from "./statCard";
-import { Package, TrendingDown, TrendingUp } from "lucide-react";
+import {
+  CheckCircle,
+  DollarSignIcon,
+  Package,
+  TrendingDown,
+  TrendingUp,
+} from "lucide-react";
 
 const Dashboard = () => {
   return (
@@ -32,8 +38,44 @@ const Dashboard = () => {
           },
         ]}
       />
-      <div className="md:row-span-1 xl:row-span-2 bg-gray-500"></div>
-      <div className="md:row-span-1 xl:row-span-2 bg-gray-500"></div>
+      <StatCard
+        title="Due & Pending Orders"
+        primaryIcon={<CheckCircle className="text-blue-600 w-6 h-6" />}
+        dateRange="22 - 29 Oct 2023"
+        details={[
+          {
+            title: "Due Orders",
+            amount: "50",
+            changePercentage: 30,
+            IconComponent: TrendingUp,
+          },
+          {
+            title: "Pending Orders",
+            amount: "20",
+            changePercentage: 20,
+            IconComponent: TrendingDown,
+          },
+        ]}
+      />
+      <StatCard
+        title="Today Sales & Revenue"
+        primaryIcon={<DollarSignIcon className="text-blue-600 w-6 h-6" />}
+        dateRange=""
+        details={[
+          {
+            title: "Today Sales",
+            amount: "10",
+            changePercentage: 30,
+            IconComponent: TrendingUp,
+          },
+          {
+            title: "Today Revenue",
+            amount: "$10,000",
+            changePercentage: 20,
+            IconComponent: TrendingDown,
+          },
+        ]}
+      />
     </div>
   );
 };

@@ -11,6 +11,7 @@ const helmet_1 = __importDefault(require("helmet"));
 const morgan_1 = __importDefault(require("morgan"));
 /* import routes */
 const dashboardRoute_1 = __importDefault(require("./routes/dashboardRoute"));
+const productRoute_1 = __importDefault(require("./routes/productRoute"));
 /* configure environment variables */
 dotenv_1.default.config();
 const app = (0, express_1.default)();
@@ -23,6 +24,7 @@ app.use(body_parser_1.default.urlencoded({ extended: false }));
 app.use((0, cors_1.default)());
 /* use routes */
 app.use("/dashboard", dashboardRoute_1.default);
+app.use("/products", productRoute_1.default);
 /* start server */
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
